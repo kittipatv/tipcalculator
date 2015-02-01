@@ -8,6 +8,6 @@ Completed user stories:
 
 Video walkthrough:
 
-!(tipcalculator.gif)
+![Video walkwthrough](tipcalculator.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
