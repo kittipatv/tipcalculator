@@ -7,6 +7,7 @@
 //
 
 #import "TipViewController.h"
+#import "SettingsViewController.h"
 
 @interface TipViewController ()
 
@@ -17,6 +18,7 @@
 
 - (IBAction)onTap:(id)sender;
 - (void)updateValues;
+- (void)onSettingsButton;
 
 @end
 
@@ -32,6 +34,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsButton)];
+  [self updateValues];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  self.tipControl.selectedSegmentIndex = [defaults integerForKey:@"default_tip_percent_index"];
   [self updateValues];
 }
 
@@ -65,6 +74,10 @@
   
   self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f", tipAmount];
   self.totalLabel.text = [NSString stringWithFormat:@"$%0.2f", totalAmount];
+}
+
+- (void)onSettingsButton {
+  [self.navigationController pushViewController:[[SettingsViewController alloc] init] animated:YES];
 }
 
 @end
